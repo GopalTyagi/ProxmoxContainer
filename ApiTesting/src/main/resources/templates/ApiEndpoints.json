@@ -1,0 +1,73 @@
+
+    /* Endpoint to create container  */
+  
+    POST : http://localhost:8080/create-vm
+	{
+	    "node": "innprox",
+	    "storage": "local-lvm",
+	    "cores": 2,
+	    "memory": "2048", // Specify memory as a string if that's how it's defined in your entity
+	    "ostemplate": "local:vztmpl/ubuntu-20.04-standard_20.04-1_amd64.tar.gz", // Ensure this path is correct
+	    "password": "securepassword",
+	    "hostname": "innprox-Gopal",
+	    "arch": "amd64",
+	    "ostype": "debian"
+	}
+	
+	/* Endpoint to create Firewall  */
+	
+	POST : http://localhost:8080/create-firewall/1009
+    {
+	    "node": "innprox",
+	    "action": "ACCEPT",
+	    "type": "in",
+	    // "macro": "Auth",
+	    "iface":"net0",
+	    "source":"+guacamole",
+	    "proto":"udp",
+	    "enable":0,
+	    "dest":"+gw-test-ipset",
+	    "dport":"8090",
+	    "sport":"803",
+	    "comment":"created by Gopal"
+	}
+	
+	/* Endpoint to create ipsets for Datacenter  */
+
+	POST : http://localhost:8080/ipset
+	{
+	    "name":"example-ipset",
+	    "comment":" Gopal"
+	}
+	
+	/* Endpoint to create cidr in ipsets for Datacenter  */
+
+	POST : http://localhost:8080/ipset/cidr
+	{
+	    "name": "example-ipset",
+	    "cidr": "192.168.1.110",
+	    "comment":"created by ...."
+	}
+	
+	/* Endpoint to create ipsets for Particular VM's'  */
+
+	POST : http://localhost:8080/ipset/vm
+	{ 
+	     "Node":"innprox", 
+	    "vmid":"1009",
+	    "Name": "example-ipset",    
+	    "Comment": "Gopal"
+	   
+	}
+
+	/* Endpoint to create cidr in ipsets for particular VM's'  */
+
+	POST : http://localhost:8080/ipset/vm/cidr
+	{
+	     "vmid":"1009",
+	    "Name": "example-ipset",  
+	    "cidr":"192.0.1.101",     
+	    "Comment": "created by Gopal"
+	   
+	}
+	

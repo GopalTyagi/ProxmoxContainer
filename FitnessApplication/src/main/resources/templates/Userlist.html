@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+body {
+	background-image:
+		url('https://example.com/path/to/your/background-image.jpg');
+	/* Replace with your background image URL */
+	background-size: cover;
+	background-position: center;
+	color: #fff; /* Text color for better contrast */
+}
+
+.container {
+	background-color: ;
+	/* Semi-transparent background for the container */
+	padding: 5px;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+h1 {
+	color: Black; /* Green color for the heading */
+	border-radius: 10px;
+}
+
+table {
+	margin-top: 20px;
+}
+
+th {
+	background-color: #343a40; /* Dark header for the table */
+	color: #fff; /* White text for header */
+}
+
+td {
+	background-color: rgba(255, 255, 255, 0.9);
+	/* Light background for table cells */
+	color: #212529; /* Dark text for better readability */
+}
+
+tr:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+	/* Light hover effect on rows */
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1 class="mt-5 text-center">User List</h1>
+
+		<!-- Display success message if available -->
+		<div th:if="${message}" class="alert alert-success"
+			th:text="${message}"></div>
+
+		<!-- Display error message if available -->
+		<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+		<div class="d-flex justify-content-end" style="margin-top: 20px;">
+			<form action="/user/logout" method="post">
+				<button type="submit" class="btn btn-danger">Logout</button>
+			</form>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Role</th>
+				<th>Role ID</th>
+				<th>Phone</th>
+				<th>Date of Birth</th>
+				<th>Gender</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.name}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${user.roleName}"></td>
+				<td th:text="${user.roleId}"></td>
+				<td th:text="${user.phone}"></td>
+				<td th:text="${user.dob}"></td>
+				<!-- Format date of birth -->
+				<td th:text="${user.gender}"></td>
+				<td><a th:href="@{/user/{id}(id=${user.id})}"
+					class="btn btn-warning btn-sm">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

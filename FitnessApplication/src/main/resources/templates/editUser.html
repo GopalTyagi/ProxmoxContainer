@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User - My Fitness Application</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            background-color: #f8f9fa; /* Light background for the form */
+            padding: 30px; /* Padding around the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+        
+        body {
+            background-color: #e9ecef; /* Light grey background for the page */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="form-container col-md-6"> <!-- Centered box style -->
+            <h2 class="text-center">Edit User</h2>
+
+            <form th:action="@{/user/{id}/update(id=${user.id})}" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" th:value="${user.name}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" th:value="${user.email}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" class="form-control" th:value="${user.phone}">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" name="password" class="form-control" th:value="${user.password}">
+                </div>
+
+                <div class="form-group">
+                    <label for="roleName">Role Name</label>
+                    <input type="text" id="roleName" name="roleName" class="form-control" th:value="${user.roleName}">
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" class="form-control" th:value="${user.dob}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" class="form-control">
+                        <option value="" th:selected="${user.gender == null}">Select Gender</option>
+                        <option value="Male" th:selected="${user.gender == 'Male'}">Male</option>
+                        <option value="Female" th:selected="${user.gender == 'Female'}">Female</option>
+                        <!-- Add other gender options as needed -->
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Update User</button> <!-- Full-width button -->
+            </form>
+
+            <!-- Optional Logout Button -->
+            <form action="/user/logout" method="post" style="margin-top: 20px;">
+                <button type="submit" class="btn btn-danger btn-block">Logout</button> <!-- Full-width button -->
+            </form>
+
+        </div> <!-- End of form-container -->
+    </div> <!-- End of container -->
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

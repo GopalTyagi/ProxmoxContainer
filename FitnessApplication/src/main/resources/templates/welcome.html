@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+body {
+	background-color: #f8f9fa; /* Light background color */
+}
+
+.container {
+	margin-top: 50px;
+	background-color: #ffffff; /* White background for the container */
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h1 {
+	color: #28a745; /* Green color for headings */
+}
+
+h2 {
+	margin-top: 30px; /* Space above section headings */
+	color: #007bff; /* Blue color for subheadings */
+}
+
+table th {
+	background-color: #343a40; /* Dark background for table headers */
+	color: white; /* White text for headers */
+}
+
+table td {
+	vertical-align: middle; /* Center align text in cells */
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome</h1>
+		<p class="lead">
+			Hello, <span th:text="${user.name}">User</span>
+		</p>
+
+		<!-- User Information Table -->
+		<h2>Your Information</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Role</th>
+					<th>Phone</th>
+					<th>Date of Birth</th>
+					<th>Gender</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="${user.roleName}"></td>
+					<td th:text="${user.phone}"></td>
+					<td th:text="${user.dob}"></td>
+					<td th:text="${user.gender}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Meal Plan Section -->
+		<h2>Your Meal Plan</h2>
+		<div th:if="${mealPlan}">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th>User ID</th>
+						<td th:text="${mealPlan.userId}"></td>
+					</tr>
+					<tr>
+						<th>Meal Name</th>
+						<td th:text="${mealPlan.mealName}"></td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td th:text="${mealPlan.description}"></td>
+					</tr>
+					<tr>
+						<th>Ingredient List</th>
+						<td th:text="${mealPlan.ingredientsList}"></td>
+					</tr>
+					<tr>
+						<th>Nutritional Information</th>
+						<td th:text="${mealPlan.nutritionalInformation}"></td>
+					</tr>
+					<tr>
+						<th>Frequency</th>
+						<td th:text="${mealPlan.frequency}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${mealPlan == null}">
+			<p>You do not have a meal plan assigned.</p>
+		</div>
+
+		<!-- Workout Plan Section -->
+		<h2>Your Workout Plan</h2>
+		<div th:if="${workoutPlan}">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th>Workout Name</th>
+						<td th:text="${workoutPlan.workoutName}"></td>
+					</tr>
+					<tr>
+						<th>Exercise List</th>
+						<td th:text="${workoutPlan.exercisesList}"></td>
+					</tr>
+					<tr>
+						<th>Duration</th>
+						<td th:text="${workoutPlan.duration}"></td>
+					</tr>
+					<tr>
+						<th>Frequency</th>
+						<td th:text="${workoutPlan.frequency}"></td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td th:text="${workoutPlan.description}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${workoutPlan == null}">
+			<p>You do not have a workout plan assigned.</p>
+		</div>
+
+		<!-- Fitness Goals Section -->
+		<h2>Your Fitness Goals</h2>
+		<div th:if="${fitnessData}">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th>Goal Type</th>
+						<td th:text="${fitnessData.goalType}"></td>
+					</tr>
+					<tr>
+						<th>Start Date</th>
+						<td th:text="${fitnessData.startDate}"></td>
+					</tr>
+					<tr>
+						<th>End Date</th>
+						<td th:text="${fitnessData.endDate}"></td>
+					</tr>
+					<tr>
+						<th>Status</th>
+						<td th:text="${fitnessData.status}"></td>
+					</tr>
+					<tr>
+						<th>Notes</th>
+						<td th:text="${fitnessData.notes}"></td>
+					</tr>
+					
+					<tr>
+						<th>Target Value</th>
+						<td th:text="${fitnessData.targetValue}"></td>
+					</tr>
+					<tr>
+						<th>Current Value</th>
+						<td th:text="${fitnessData.currentValue}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<!-- No Fitness Goals Assigned -->
+		<div th:if="${fitnessData == null}">
+			<p>You do not have fitness goals set.</p>
+		</div>
+
+		<form action="/user/logout" method="post" style="margin-top: 20px;">
+			<button type="submit" class="btn btn-danger">Logout</button>
+		</form>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

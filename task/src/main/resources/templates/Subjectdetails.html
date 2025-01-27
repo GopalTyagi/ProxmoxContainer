@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Subject Details</h1>
+        <div class="card">
+            <div class="card-body">
+				
+				
+                <p><strong>Subject ID:</strong> <span th:text="${studentDetails.subjectId}"></span></p>
+                <p><strong>Subject Name:</strong> <span th:text="${studentDetails.subjectName}"></span></p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="student : ${studentDetails.list}">
+                            <td th:text="${student.name}"></td>
+                            <td th:text="${student.email}"></td>
+							<td th:text="${student.marks}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
